@@ -1,1 +1,65 @@
 
+Voice Assistant Powered by GPT
+
+Hackster LINK: https://www.hackster.io/kakanurusathvik/speak-gpt-9ba06f
+Overview
+
+This voice assistant is an interactive AI system designed to understand and respond to voice commands using the advanced capabilities of GPT (Generative Pretrained Transformer). It uses a PocketBeagle as its core, connected to a microphone, speaker, and wireless adapter to function. This document provides a detailed explanation of the software components and a guide on how to use the voice assistant.
+
+Software Implementation
+
+`AudioRecorder` Class
+
+The `AudioRecorder` class is responsible for recording audio through the microphone. It initializes the recording settings, such as format, channel, rate, and chunk size. It uses the PyAudio library to handle the audio stream.
+
+- `__init__(self, button)`: Sets up the audio format, channels, rate, chunk size, record duration, and button for starting the recording.
+- `record(self)`: Waits for a button press to begin recording, captures audio for a specified duration, and saves it as a WAV file.
+
+'SpeechToTextConverter` Class
+
+The `SpeechToTextConverter` class converts the recorded speech into text using Google's speech-to-text service.
+
+- `__init__(self, credentials_file)`: Initializes the speech client with the provided credentials.
+- `convert(self, audio_file)`: Reads the audio file and sends it to Google's speech-to-text API to get the transcript.
+
+`GPTResponseGenerator` Class
+
+The `GPTResponseGenerator` class interfaces with OpenAI's API to generate a response from the GPT model based on the input text.
+
+- `__init__(self, api_key)`: Sets up the OpenAI API key for authentication.
+- `generate_response(self, prompt, model="gpt-3.5-turbo")`: Sends a prompt to the GPT model and receives a response.
+
+`TextToSpeech` Class
+
+The `TextToSpeech` class converts the response text back into speech using the gTTS (Google Text-to-Speech) library.
+
+- `__init__(self)`: Initializes the file paths for the output audio files.
+- `convert_and_save(self, text, lang='en')`: Converts the text to speech, saves it as an MP3, and exports it as a WAV file.
+
+`ContinuousRunner` Class
+
+The `ContinuousRunner` class orchestrates the entire process, from recording to playing back the response.
+
+- `__init__(self, button_pin)`: Sets up the components for speech-to-text, GPT response generation, and text-to-speech conversion.
+- `run(self)`: Continuously records audio, converts it to text, generates a response, converts it back to speech, and plays the audio.
+
+Main Execution
+
+The script checks for an internet connection and initializes the GPIO pins for the PocketBeagle. Once everything is set up, it creates an instance of `ContinuousRunner` and starts the process.
+
+- `connected_internet()`: Checks for internet connectivity.
+- `if __name__ == "__main__"`: The entry point of the script which blinks an LED to indicate readiness and then starts the voice assistant loop.
+
+Usage:
+To use the voice assistant:
+1. Ensure all hardware components are properly connected to the PocketBeagle.
+2. Install all required Python libraries listed in `requirements.txt`.
+3. Set up the Google Cloud credentials for the speech-to-text service.
+4. Place your OpenAI API key in the `GPTResponseGenerator` class.
+5. Run the main script: `python voice_assistant.py`
+6. Press the button to start interacting with your voice assistant.
+
+Enjoy your interactions with the AI-powered voice assistant!
+
+## Contributors
+Sathvik Kakanuru, Erik Welsh
