@@ -1,0 +1,41 @@
+Software Flow Diagram:
+
+Inputs: 
+Voice Commands from User (listen_to_activation_word working to hear all the inputs)
+
+Outputs:
+Audio Output from the Speaker
+
+
+(None of the classes are fully developed, though there is existing code for VoiceCapture and VoiceProcessor)
+
+Classes & Functions:
+1. **Class: VoiceCapture**  
+   - Purpose: To interface with the microphone and capture user's voice.
+     - `start_capture()`: Initiates voice recording.
+     - `stop_capture()`: Stops voice recording.
+     - `get_audio_data()`: Retrieves the latest audio data captured.
+
+2. **Class: VoiceProcessor**  
+   - Purpose: To convert voice to text and vice versa.
+     - `voice_to_text(audio_data)`: Converts voice data to text using a VTT Service. Returns the transcribed text.
+     - `text_to_voice(text_data)`: Converts text to voice using a TTS Service. Returns audio data.
+
+3. **Class: GPT_API_Interface**  
+   - Purpose: To communicate with the GPT API.
+     - `send_request(text_data)`: Sends the text data to GPT API for processing. Returns GPT's response.
+     - `get_response()`: Retrieves the latest response from the GPT API.
+
+4. **Class: AudioOutput**  
+   - Purpose: To handle audio output operations.
+     - `play_audio(audio_data)`: Plays the provided audio data through the speaker.
+     - `stop_audio()`: Stops any ongoing audio output.
+
+6. **Class: MainController**  
+   - Purpose: To orchestrate the overall flow and operations.
+     - `init_system()`: Initializes system components (e.g., WiFi connection, microphone).
+     - `capture_voice_input()`: Invokes voice capture and sends it for processing.
+     - `process_voice()`: Uses VoiceProcessor for VTT and invokes GPT API Interface.
+     - `get_gpt_response()`: Fetches GPT's response and sends it to TTS.
+     - `output_response()`: Sends TTS response to the speaker for audio output.
+
