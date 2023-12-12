@@ -1,0 +1,24 @@
+{
+    "Header": {
+        "Comment": "All values are metric (mm)",
+        "CreationDate": "2023-12-12T19:59:41Z",
+        "GenerationSoftware": {
+            "Application": "EAGLE",
+            "Vendor": "Autodesk",
+            "Version": "9.6.2"
+        },
+        "Part": "Single"
+    },
+    "Overall": {
+        "BoardThickness": 1.99,
+        "LayerNumber": 4,
+        "Name": {
+            "ProjectId": "Etch_a_Sketch"
+        },
+        "Owner": "Sathvik Kakanuru <srk9@rice.edu>",
+        "Size": {
+            "X": 126.98,
+            "Y": 102.54
+        }
+    }
+}
